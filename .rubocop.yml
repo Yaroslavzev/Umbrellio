@@ -1,0 +1,15 @@
+inherit_gem:
+  # rubocop-config-umbrellio: lib/rubocop.yml
+  # OR
+  rubocop-config-umbrellio: lib/rubocop.rails.yml
+
+Rails:
+  Enabled: true
+
+AllCops:
+  TargetRubyVersion: 2.5.3
+  Exclude:
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'spec/**/*'
