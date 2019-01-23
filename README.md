@@ -3,7 +3,7 @@
 Тестовое задание для Umbrellio
 
 
-h3 rubocop
+# h3 rubocop
 Строка `Style/TrailingCommaInLiteral` заменена на две:
 
 ```
@@ -15,11 +15,11 @@ Style/TrailingCommaInHashLiteral:
 ```
 
 
-h3 настройка .env
+# h3 настройка .env
 ```
 DATABASE_HOSTNAME=localhost
-DATABASE_PORT=5432
-DATABASE_USERNAME=yaroslavzev
-DATABASE_NAME=unit_7
-DATABASE_PASSWORD
+DATABASE_PORT=port
+DATABASE_USERNAME=username
+DATABASE_NAME=database
+DATABASE_PASSWORD=password
 ```
