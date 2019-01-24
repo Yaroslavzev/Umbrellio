@@ -38,6 +38,12 @@ gem "bootsnap", ">= 1.1.0", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem "rack-cors"
 
+# Polist::Service is a simple class designed for creating service classes
+gem "polist"
+
+# Tainbox is a utility gem that can be used to inject attributes into Ruby objects
+gem "tainbox"
+
 group :development, :test do
   # Code stylies by Umbrellio
   gem "rubocop-config-umbrellio"

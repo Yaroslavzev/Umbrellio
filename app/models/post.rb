@@ -1,3 +1,5 @@
 class Post < ApplicationRecord
-  has_many :users
+  validates :title, :body, presence: true
+
+  belongs_to :user
 end

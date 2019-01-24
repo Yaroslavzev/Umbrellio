@@ -18,7 +18,7 @@ hash_posts = Array.new(30) do
   {
     title:    Faker::Hipster.sentence,
     body:     Faker::Hipster.paragraph,
-    ip:       Faker::Internet.public_ip_v4_address.to_s,
+    ip:       Faker::Internet.ip_v4_address,
     user_id:  users.sample.id
   }
 end

@@ -15,13 +15,21 @@ class RatesController < ApplicationController
 
   # POST /rates
   def create
-    @rate = Rate.new(rate_params)
+    @rate = RateService.run(rate_params.to_h)
+    render json: @rate.response
+    #@rate.success? ? (render json: @rate.response) : (render json: @rate.response, status: 422)
 
-    if @rate.save
-      render json: @rate, status: :created, location: @rate
-    else
-      render json: @rate.errors, status: :unprocessable_entity
-    end
+#    rate_params
+#
+#
+#    @rate = Rate.new(@rate)
+#    @rate.post = Post.where(ip: IPAddr.new(@ip))
+#
+#    if @rate.save
+#      render json: @rate, status: :created, location: @rate
+#    else
+#      render json: @rate.errors, status: :unprocessable_entity
+#    end
   end
 
   # PATCH/PUT /rates/1
@@ -39,13 +47,14 @@ class RatesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_rate
-      @rate = Rate.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def rate_params
-      params.require(:rate).permit(:value, :post_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_rate
+    @rate = Rate.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def rate_params
+    params.permit(:value, :ip)
+  end
 end
