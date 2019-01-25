@@ -16,34 +16,21 @@ class RatesController < ApplicationController
   # POST /rates
   def create
     @rate = RateService.run(rate_params.to_h)
+
+    @rate.success? ? (render json: @rate.response) : (render json: @rate.response, status: 422)
+  end
+
+  # POST rates/top_amount
+  def top_amount
+    @rate = AmountService.run(rate_params.to_h)
+    @rate.success? ? (render json: @rate.response) : (render json: @rate.response, status: 422)
+  end
+
+  # GET rates/get_ip
+  def get_ip
+    @rate = IpService.call#(rate_params.to_h)
     render json: @rate.response
     #@rate.success? ? (render json: @rate.response) : (render json: @rate.response, status: 422)
-
-#    rate_params
-#
-#
-#    @rate = Rate.new(@rate)
-#    @rate.post = Post.where(ip: IPAddr.new(@ip))
-#
-#    if @rate.save
-#      render json: @rate, status: :created, location: @rate
-#    else
-#      render json: @rate.errors, status: :unprocessable_entity
-#    end
-  end
-
-  # PATCH/PUT /rates/1
-  def update
-    if @rate.update(rate_params)
-      render json: @rate
-    else
-      render json: @rate.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /rates/1
-  def destroy
-    @rate.destroy
   end
 
   private
@@ -55,6 +42,6 @@ class RatesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def rate_params
-    params.permit(:value, :ip)
+    params.permit(:value, :ip, :amount)
   end
 end
