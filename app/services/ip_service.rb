@@ -15,11 +15,6 @@ class IpService < Polist::Service
   private
 
   def getting_ip
-    #@rate_data = self.as_json["form"]
-    Post.all.distinct.pluck(:ip).uniq.map do |finded_ip|
-      {ip:    Post.find_by(ip: finded_ip).ip.to_s,
-       login: Post.where(ip: finded_ip).map { |post| post.user.login}#_by(ip: finded_ip))
-      }
-    end
+    Post.joins(:user).group("posts.ip").select("posts.ip, json_agg(DISTINCT login)")
   end
 end

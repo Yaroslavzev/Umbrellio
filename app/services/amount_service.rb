@@ -15,11 +15,22 @@ class AmountService < Polist::Service
     end
 
   end
-  
+
   private
 
   def finding
     @rate_data = self.as_json["form"]
-    Rate.joins(:post).distinct.pluck(:ip).uniq.map{|finded_ip| Rate.joins(:post).where(post: Post.find_by(ip: finded_ip)).average(:value)}.sort_by{ |a| a }.reverse.first(@rate_data["amount"])
+    Rate.joins(:post).group("posts.id").select("posts.id,posts.title, posts.body, avg(rates.value) as rate").order('rate desc').limit(@rate_data["amount"])
   end
 end
+
+#SELECT
+#    p.id,
+#    p.title,
+#    p.body,
+#    AVG(r.value)
+#FROM
+#    posts p
+#    JOIN rates r ON p.id = r.post_id
+#GROUP BY
+#    p.id

@@ -8,28 +8,34 @@
 
 require "faker"
 
-hash_users = Array.new(10) do
+hash_users = Array.new(100) do
   { login: Faker::Name.name }
 end
 users = User.create! hash_users
 
-hash_posts = Array.new(30) do
+hash_ips = Array.new(50) do
+  {ip: Faker::Internet.ip_v4_address}
+end
+
+hash_posts = Array.new(200000) do
   print "."
   {
     title:    Faker::Hipster.sentence,
     body:     Faker::Hipster.paragraph,
-    ip:       Faker::Internet.ip_v4_address,
+    ip:       IPAddr.new(hash_ips.sample[:ip]),
     user_id:  users.sample.id
   }
 end
 
 posts = Post.create! hash_posts
+puts "next"
 
-hash_rates = posts.map do |post|
+hash_rates = Array.new(50000) do |post|
+  print "."
   {
     value: rand(1..5),
-    post_id: post.id,
+    post_id: post.sample.id,
   }
 end
-puts hash_rates
+puts "next"
 Rate.create! hash_rates
