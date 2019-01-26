@@ -44,6 +44,11 @@ gem "polist"
 # Tainbox is a utility gem that can be used to inject attributes into Ruby objects
 gem "tainbox"
 
+# File.foreach("path/to/file") { |line|  }
+gem "sequel"
+gem "sequel-rails"
+#gem 'sequel_pg', :require=>'sequel'
+
 group :development, :test do
   # Code stylies by Umbrellio
   gem "rubocop-config-umbrellio"

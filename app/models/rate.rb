@@ -1,3 +1,3 @@
-class Rate < ApplicationRecord
-  belongs_to :post
+class Rate < Sequel::Model #ApplicationRecord
+  many_to_one :post#, key: post_id
 end

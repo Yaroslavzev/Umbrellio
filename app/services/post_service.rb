@@ -20,7 +20,7 @@ class PostService < Polist::Service
 
   def save
     @post_data = self.as_json["form"]
-    unless User.exists?(id: @post_data["user_id"])
+    unless User[@post_data["user_id"]].exists?
       @post_new = Post.new(@post_data)
       @post_new.user = User.create(login: "Johansson", id: @post_data["user_id"])
       p @post_new.save

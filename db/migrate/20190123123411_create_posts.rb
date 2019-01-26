@@ -1,12 +1,15 @@
-class CreatePosts < ActiveRecord::Migration[5.2]
-  def change
-    create_table :posts do |t|
-      t.text :title
-      t.text :body
-      t.inet :ip
-      t.references :user, foreign_key: true
+Sequel.migration do
+  change do
+    create_table :posts do
+      primary_key :id
+      foreign_key :user_id, :users, null: false
 
-      t.timestamps
+      Text :title
+      Text :body
+      Inet :ip
+      #References :user, foreign_key: true
+
+
     end
   end
 end

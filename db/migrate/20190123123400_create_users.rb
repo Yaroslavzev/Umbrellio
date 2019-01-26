@@ -1,9 +1,10 @@
-class CreateUsers < ActiveRecord::Migration[5.2]
-  def change
-    create_table :users do |t|
-      t.string :login
+Sequel.migration do
+  change do
+    create_table :users do
+      primary_key :id
+      String :login
 
-      t.timestamps
+      #timestamps
     end
   end
 end

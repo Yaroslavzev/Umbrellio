@@ -4,7 +4,7 @@ require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
-require "active_record/railtie"
+#require "active_record/railtie"
 require "active_storage/engine"
 require "action_controller/railtie"
 require "action_mailer/railtie"
@@ -22,6 +22,16 @@ module Umbrellio
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    config.sequel.after_connect = proc do
+      Sequel::Model.db.extension :pagination
+      #Sequel::Model.db.extension :pg_hstore
+
+      Sequel::Model.plugin :active_model
+      Sequel::Model.plugin :validation_helpers
+      Sequel::Model.plugin :dirty
+      Sequel::Model.plugin :association_proxies
+      Sequel::Model.plugin :timestamps, update_on_create: true
+    end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

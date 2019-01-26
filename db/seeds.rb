@@ -7,11 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require "faker"
-
+require 'sequel'
+#Sequel.extension :base
 hash_users = Array.new(100) do
   { login: Faker::Name.name }
 end
-users = User.create! hash_users
+users = hash_users.map {|user| User.create(user) }
 
 hash_ips = Array.new(50) do
   {ip: Faker::Internet.ip_v4_address}
@@ -22,20 +23,20 @@ hash_posts = Array.new(200000) do
   {
     title:    Faker::Hipster.sentence,
     body:     Faker::Hipster.paragraph,
-    ip:       IPAddr.new(hash_ips.sample[:ip]),
+    ip:       (IPAddr.new(hash_ips.sample[:ip]).to_s),
     user_id:  users.sample.id
   }
 end
 
-posts = Post.create! hash_posts
+posts = hash_posts.map { |post| Post.create(post) }
 puts "next"
 
 hash_rates = Array.new(50000) do |post|
   print "."
   {
     value: rand(1..5),
-    post_id: post.sample.id,
+    post_id: posts.sample.id,
   }
 end
 puts "next"
-Rate.create! hash_rates
+hash_rates.each {|rate| Rate.create(rate) }
