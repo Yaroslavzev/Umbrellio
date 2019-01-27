@@ -25,7 +25,7 @@ module Umbrellio
     config.sequel.after_connect = proc do
       Sequel::Model.db.extension :pagination
       #Sequel::Model.db.extension :pg_hstore
-
+      Sequel::DATABASES.first.extension :batches
       Sequel::Model.plugin :active_model
       Sequel::Model.plugin :validation_helpers
       Sequel::Model.plugin :dirty

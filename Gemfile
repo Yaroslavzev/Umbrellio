@@ -47,7 +47,8 @@ gem "tainbox"
 # File.foreach("path/to/file") { |line|  }
 gem "sequel"
 gem "sequel-rails"
-#gem 'sequel_pg', :require=>'sequel'
+gem 'sequel_pg', :require=>'sequel'
+gem 'sequel-batches'
 
 group :development, :test do
   # Code stylies by Umbrellio

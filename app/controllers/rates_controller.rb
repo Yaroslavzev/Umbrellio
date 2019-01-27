@@ -1,18 +1,4 @@
 class RatesController < ApplicationController
-  before_action :set_rate, only: [:show, :update, :destroy]
-
-  # GET /rates
-  def index
-    @rates = Rate.all
-
-    render json: @rates
-  end
-
-  # GET /rates/1
-  def show
-    render json: @rate
-  end
-
   # POST /rates
   def create
     @rate = RateService.run(rate_params.to_h)
@@ -34,11 +20,6 @@ class RatesController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_rate
-    @rate = Rate.find(params[:id])
-  end
 
   # Only allow a trusted parameter "white list" through.
   def rate_params
