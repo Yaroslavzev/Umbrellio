@@ -57,6 +57,7 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   # RSpec
   gem "rspec-rails"
+  gem "rspec_sequel_matchers"
   # Test data
   gem "faker"
 end

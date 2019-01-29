@@ -6,9 +6,15 @@ RSpec.describe "User" do
 
     subject { User.new }
 
-    it "allows create :login" do
+    it "allows reading and writing for  :login" do
       subject.login = 'Test'
       expect(subject.login).to eq('Test')
+      expect(subject.login).to be_kind_of(String)
     end
+
+    it "has many posts"  do
+      expect(subject).to have_one_to_many(:posts)
+    end
+
   end
 end

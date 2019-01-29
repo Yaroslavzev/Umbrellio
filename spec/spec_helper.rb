@@ -15,7 +15,10 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 RSpec.configure do |config|
   #config.filter_run_excluding rspec_exclusions
 
+  config.include RspecSequel::Matchers
+
   config.before(:all) do
+
     I18n.backend.store_translations(
       :en,
       'sequel' => {
@@ -27,6 +30,7 @@ RSpec.configure do |config|
   end
 
   config.around :each do |example|
+
     if example.metadata[:no_transaction]
       example.run
     else
