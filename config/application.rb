@@ -21,6 +21,12 @@ module Umbrellio
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    # This setting disabled the automatic connect after Rails init
+    #config.sequel.skip_connect = true
+
+    # Configure if Sequel should try to 'test' the database connection in order
+    # to fail early
+    config.sequel.test_connect = true
 
     config.sequel.after_connect = proc do
       Sequel::Model.db.extension :pagination

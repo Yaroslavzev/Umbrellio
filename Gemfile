@@ -55,7 +55,8 @@ group :development, :test do
   gem "rubocop-config-umbrellio"
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
-
+  # RSpec
+  gem "rspec-rails"
   # Test data
   gem "faker"
 end

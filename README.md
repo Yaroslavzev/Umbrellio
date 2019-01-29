@@ -4,6 +4,7 @@
 
 
 ## rubocop
+Установлен `gem "rubocop-config-umbrellio"`.
 Строка `Style/TrailingCommaInLiteral` заменена на две:
 
 ```ruby
@@ -21,6 +22,7 @@ DATABASE_HOSTNAME=localhost
 DATABASE_PORT=port
 DATABASE_USERNAME=username
 DATABASE_NAME=database
+TEST_DATABASE_NAME=test_database
 DATABASE_PASSWORD=password
 ```
 
@@ -36,13 +38,10 @@ CREATE temp TABLE users (
 INSERT INTO users (group_id)
     VALUES (1), (1), (1), (2), (1), (3);
 ```
-<<<<<<< HEAD
 В этой таблице, упорядоченной по ID необходимо:
 1. Выделить непрерывные группы по group_id с учетом указанного порядка записей (их 4)
 2. Подсчитать количество записей в каждой группе
 3. Вычислить минимальный ID записи в группе
-=======
->>>>>>> b36aa2e1ae050160e6b95560a27ccfca2724cbe5
 
 Ответ:
 ```SQL
