@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class RatesControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -11,7 +13,7 @@ class RatesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create rate" do
-    assert_difference('Rate.count') do
+    assert_difference("Rate.count") do
       post rates_url, params: { rate: { post_id: @rate.post_id, value: @rate.value } }, as: :json
     end
 
@@ -29,7 +31,7 @@ class RatesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy rate" do
-    assert_difference('Rate.count', -1) do
+    assert_difference("Rate.count", -1) do
       delete rate_url(@rate), as: :json
     end
 

@@ -1,10 +1,12 @@
-require_relative 'boot'
+# frozen_string_literal: true
+
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
-#require "active_record/railtie"
+# require "active_record/railtie"
 require "active_storage/engine"
 require "action_controller/railtie"
 require "action_mailer/railtie"
@@ -22,7 +24,7 @@ module Umbrellio
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     # This setting disabled the automatic connect after Rails init
-    #config.sequel.skip_connect = true
+    # config.sequel.skip_connect = true
 
     # Configure if Sequel should try to 'test' the database connection in order
     # to fail early
@@ -30,8 +32,9 @@ module Umbrellio
 
     config.sequel.after_connect = proc do
       Sequel::Model.db.extension :pagination
-      #Sequel::Model.db.extension :pg_hstore
+      # Sequel::Model.db.extension :pg_hstore
       Sequel::DATABASES.first.extension :batches
+      Sequel::Model.strict_param_setting = false
       Sequel::Model.plugin :active_model
       Sequel::Model.plugin :validation_helpers
       Sequel::Model.plugin :dirty

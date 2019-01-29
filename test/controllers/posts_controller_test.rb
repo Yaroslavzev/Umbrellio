@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -11,7 +13,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create post" do
-    assert_difference('Post.count') do
+    assert_difference("Post.count") do
       post posts_url, params: { post: { body: @post.body, ip: @post.ip, title: @post.title } }, as: :json
     end
 
@@ -29,7 +31,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy post" do
-    assert_difference('Post.count', -1) do
+    assert_difference("Post.count", -1) do
       delete post_url(@post), as: :json
     end
 

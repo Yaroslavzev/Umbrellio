@@ -13,3 +13,7 @@ AllCops:
     - 'vendor/**/*'
     - 'tmp/**/*'
     - 'spec/**/*'
+    - 'test/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'test.rb'

@@ -1,4 +1,5 @@
-class User < Sequel::Model#ApplicationRecord
+# frozen_string_literal: true
 
-  one_to_many :posts#, :eager=>[:tags]#, key: id
+class User < Sequel::Model
+  one_to_many :posts
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Sequel.migration do
   change do
     create_table :posts do
@@ -7,9 +9,6 @@ Sequel.migration do
       Text :title
       Text :body
       Inet :ip
-      #References :user, foreign_key: true
-
-
     end
   end
 end

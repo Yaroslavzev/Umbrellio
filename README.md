@@ -71,3 +71,20 @@ FROM (
         grp,
         group_id
 ```
+
+## Нарушение соглашений Rubocop
+Rubocop выдает нарушения соглашения, которые, как мне кажется, связаны с Sequel:
+```ruby
+app/services/rate_service.rb:23:10: C: Rails/SaveBang: Use create! instead of create if the return value is not checked.
+    Rate.create(value: @rate_data["value"], post_id: @rate_data["id"])
+         ^^^^^^
+app/services/post_service.rb:25:5: C: Style/UnlessElse: Do not use unless with else. Rewrite these with the positive case first.
+    unless User[@post_data["user_id"]] ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/services/post_service.rb:28:17: C: Rails/SaveBang: Use save! instead of save if the return value is not checked.
+      @post_new.save
+                ^^^^
+app/services/post_service.rb:30:12: C: Rails/SaveBang: create returns a model which is always truthy.
+      Post.create(@post_data)
+           ^^^^^^
+```

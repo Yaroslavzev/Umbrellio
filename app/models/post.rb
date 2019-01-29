@@ -1,5 +1,6 @@
-class Post <  Sequel::Model #ApplicationRecord
-  #validates :title, :body, presence: true
-  one_to_many :rates#, key: post_id
-  many_to_one :user#, key: user_id
+# frozen_string_literal: true
+
+class Post <  Sequel::Model
+  one_to_many :rates
+  many_to_one :user
 end

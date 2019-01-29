@@ -1,3 +1,5 @@
-class Rate < Sequel::Model #ApplicationRecord
-  many_to_one :post#, key: post_id
+# frozen_string_literal: true
+
+class Rate < Sequel::Model
+  many_to_one :post
 end
