@@ -1,29 +1,33 @@
 require 'rails_helper'
 
-RSpec.describe RatesController do
-  describe "GET 'get_ip'" do
+describe RatesController do
+  let(:rate_params) { { value: 3, id: 3, amount: 3 } }
 
-    it "returns http success" do
-        get 'rate/get_ip'
-        response.should be_success
-      end
+  describe "GET 'get_ip'" do
+    before(:example) {get :get_ip}
+
+    it "is a success" do
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe "POST 'rates'" do
+      it "is a success(200)" do
+      expect(post :create, params: rate_params).to have_http_status(:ok)
     end
 
+    it "isn't a success(422)" do
+      expect(post :create).to have_http_status(:unprocessable_entity)
+    end
+  end
+
+  describe "POST 'rates/top_amount'" do
+    it "is a success(200)" do
+      expect(post :top_amount, params: rate_params).to have_http_status(:ok)
+    end
+
+    it "isn't a success(422)" do
+      expect(post :top_amount).to have_http_status(:unprocessable_entity)
+    end
+  end
 end
-
-
-#describe "GET 'index'" do
-#  it "returns http success" do
-#    get 'index'
-#    response.should be_success
-#  end
-#end
-#
-#
-#
-#it 'creates resource and redirects to its page' do
-#  expect { subject }.to change(Project, :count).by(1)
-#  resource = Post.last
-#  expect(project.name).to eq 'new_name'
-#  expect(subject).to redirect_to project_path(resource)
-#end

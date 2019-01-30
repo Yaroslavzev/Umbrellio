@@ -6,6 +6,9 @@ inherit_gem:
 Rails:
   Enabled: true
 
+  Rails/SaveBang:
+  Enabled: false
+
 AllCops:
   TargetRubyVersion: 2.5.3
   Exclude:

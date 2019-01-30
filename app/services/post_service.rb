@@ -22,12 +22,12 @@ class PostService < Polist::Service
 
   def save
     @post_data = as_json["form"]
-    unless User[@post_data["user_id"]]
+    if User[@post_data["user_id"]]
+      Post.create(@post_data)
+    else
       @post_new = Post.new(@post_data)
       @post_new.user = User.create(login: "Johansson", id: @post_data["user_id"])
       @post_new.save
-    else
-      Post.create(@post_data)
     end
   end
 end

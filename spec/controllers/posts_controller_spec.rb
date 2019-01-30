@@ -1,28 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe PostsController do
-  describe "GET 'index'" do
-  #describe '#create' do
-  #  subject { post :create, project: post_params }
-  #  let(:post_params) { {name: 'new_project'} }
+describe PostsController do
+  describe "GET 'posts'" do
+    let(:post_params) { {post: { title: "Test", body: "Test", ip: IPAddr.new("55.245.90.102"), user_id: "1"}} }
 
+    it "is a success(200)" do
+      expect(post :create, params: post_params).to have_http_status(:ok)
+    end
 
-
+    it "isn't a success(422)" do
+      expect(post :create, params: {post: {title: ""}}).to have_http_status(:unprocessable_entity)
+    end
+  end
 end
-
-
-#describe "GET 'index'" do
-#  it "returns http success" do
-#    get 'index'
-#    response.should be_success
-#  end
-#end
-#
-#
-#
-#it 'creates resource and redirects to its page' do
-#  expect { subject }.to change(Project, :count).by(1)
-#  resource = Post.last
-#  expect(project.name).to eq 'new_name'
-#  expect(subject).to redirect_to project_path(resource)
-#end
